@@ -20,37 +20,38 @@
 # Student iis failing.
 
 exam_one = int(input("Input exam grade one: "))
+exam_two = int(input("Input exam grade two: "))
+exam_three = int(input("Input exam grade three: "))
 
-exam_two = input("Input exam grade two: "))
+grades = [exam_one, exam_two, exam_three]
 
-exam_3 = str(input("Input exam grade three: "))
+# Calculate the sum
+total = 0
+for grade in grades:
+    total += grade
 
-grades = [exam_one exam_two exam_three]
-sum = 0
-for grade in grade:
-  sum = sum + grade
+# Calculate the average (using int() to drop decimals like in your example)
+avg = int(total / len(grades))
 
-avg = sum / len(grdes)
-
+# Determine the letter grade
 if avg >= 90:
     letter_grade = "A"
-elif avg >= 80 and avg < 90
+elif avg >= 80:
     letter_grade = "B"
-elif avg > 69 and avg < 80:
-    letter_grade = "C'
-elif avg <= 69 and avg >= 65:
+elif avg >= 70:
+    letter_grade = "C"
+elif avg >= 60:
     letter_grade = "D"
-elif:
+else:
     letter_grade = "F"
 
-for grade in grades:
-    print("Exam: " + str(grade))
+# Print results
+print(f"Exams: {exam_one}, {exam_two}, {exam_three}")
+print(f"Average: {avg}")
+print(f"Grade: {letter_grade}")
 
-    print("Average: " + str(avg))
-
-    print("Grade: " + letter_grade)
-
-if letter-grade is "F":
-    print "Student is failing."
+# Determine if passing or failing
+if letter_grade == "F":
+    print("Student is failing.")
 else:
-    print "Student is passing."
+    print("Student is passing.")
