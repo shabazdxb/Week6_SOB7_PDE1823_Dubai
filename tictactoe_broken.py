@@ -6,7 +6,6 @@
 def draw_line(width, edge, filling):
     print(filling.join([edge] * (width + 1)))
 
-
 def display_winner(player):
     if player == 0:
         print("Tie")
@@ -67,7 +66,9 @@ def add_piece(game, player, row, column):
     row: 0-index row
     column: 0-index column
     """
-    game[row][column+1] = player
+    # CHANGED: Removed the "+1" from column+1. 
+    # Having the +1 would cause an IndexError crash if the user picked the 3rd column!
+    game[row][column] = player
     return game
 
 def check_space_empty(game, row, column):
@@ -77,7 +78,8 @@ def convert_input_to_coordinate(user_input):
     return user_input - 1
 
 def switch_player(player):
-    if player = 1:
+    # CHANGED: Python requires == for checking equality. A single = is only used to assign a variable.
+    if player == 1:
         return 2
     else:
         return 1
@@ -98,12 +100,20 @@ if __name__ == '__main__':
     while winner == 0 and moves_exist(game):
         print("Currently player: " + str(player))
         available = False
-        while not available
+        
+        # CHANGED: Added the missing colon at the end of the while loop statement
+        while not available:
             row = convert_input_to_coordinate(int(input("Which row? (start with 1) ")))
             column = convert_input_to_coordinate(int(input("Which column? (start with 1) ")))
-            available = check_space_empty(game, row)
+            
+            # CHANGED: check_space_empty requires 3 arguments, so we had to pass 'column' to it as well
+            available = check_space_empty(game, row, column)
+            
         game = add_piece(game, player, row, column)
         display_game(game)
         player = switch_player(player)
-#        winner = check_winner(game)
+        
+        # CHANGED: Uncommented this line! Without it, the game never checks if someone won and will always end in a Tie.
+        winner = check_winner(game)
+        
     display_winner(winner)
