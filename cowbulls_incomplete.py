@@ -15,7 +15,6 @@ def compare_numbers(number, user_guess):
 
 playing = True 
 
-# CHANGED: Removed .zfill() as requested, and updated the randint range to 1000-9999 to guarantee a 4-digit number is generated instead.
 number = str(random.randint(1000, 9999)) 
 guesses = 0
 
@@ -28,11 +27,11 @@ print("Type 'exit' at any prompt to exit.\n")
 while playing:
     user_guess = input("Give me your best 4-digit guess! ")#changed raw input as it was removed in python 3. no longer needed for this code.
     
-    # CHANGED: Added .lower() so it safely catches if the user types "Exit" or "EXIT"
+    # Added .lower() so it safely catches if the user types "Exit" or "EXIT"
     if user_guess.lower() == "exit":
         break
         
-    # CHANGED: Added a safety check to ensure the guess is exactly 4 characters to prevent the script from crashing with an IndexError
+    # Added a safety check to ensure the guess is exactly 4 characters to prevent the script from crashing with an IndexError
     if len(user_guess) != 4:
         print("Oops! You must enter exactly 4 digits. Try again.")
         continue
@@ -47,3 +46,4 @@ while playing:
         print("You win the game after " + str(guesses) + " guesses! The number was " + str(number))
     else:
         print("Your guess isn't quite right, try again.\n")
+
